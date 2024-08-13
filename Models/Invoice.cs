@@ -20,7 +20,7 @@ namespace celsiaAssetsment.Models
         public float Paid_Amount { get; set; }
 
         [Required(ErrorMessage = "The client id is required.")]
-        public int Client_Id { get; set; }
+        public int ClientId { get; set; }
         public virtual Client? Client { get; set; }
 
         [JsonIgnore]

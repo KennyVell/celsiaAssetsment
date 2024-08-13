@@ -1,4 +1,4 @@
-CREATE TABLE Client (
+CREATE TABLE Clients (
 Id INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(255) NOT NULL,
 Address TEXT,
@@ -7,33 +7,33 @@ Phone VARCHAR(20),
 Email VARCHAR(255)
 );
 
-CREATE TABLE Platform (
+CREATE TABLE Platforms (
 Id INT AUTO_INCREMENT PRIMARY KEY,
 Name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Invoice (
+CREATE TABLE Invoices (
 Id INT AUTO_INCREMENT PRIMARY KEY,
 Number VARCHAR(50),
 Period VARCHAR(50),
 Billed_Amount FLOAT NOT NULL,
 Paid_Amount FLOAT NOT NULL,
-Client_Id INT,
-FOREIGN KEY (Client_Id) REFERENCES Client(Id)
+ClientId INT,
+FOREIGN KEY (ClientId) REFERENCES Clients(Id)
 );
 
-CREATE TABLE Transaction (
+CREATE TABLE Transactions (
 Id INT AUTO_INCREMENT PRIMARY KEY,
 Date_Time DATETIME NOT NULL,
 Amount FLOAT NOT NULL,
 Status ENUM('Pendiente','Fallida','Completada'),
 Type ENUM('Pago de Factura') DEFAULT 'Pago de Factura',
-Client_Id INT,
-Platform_Id INT,
-Invoice_Id INT,
-FOREIGN KEY (Client_Id) REFERENCES Client(Id),
-FOREIGN KEY (Platform_Id) REFERENCES Platform(Id),
-FOREIGN KEY (Invoice_Id) REFERENCES Invoice(Id)
+ClientId INT,
+PlatformId INT,
+InvoiceId INT,
+FOREIGN KEY (ClientId) REFERENCES Clients(Id),
+FOREIGN KEY (PlatformId) REFERENCES Platforms(Id),
+FOREIGN KEY (InvoiceId) REFERENCES Invoices(Id)
 );
 
 CREATE TABLE Admins (

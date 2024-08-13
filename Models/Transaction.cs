@@ -19,15 +19,15 @@ namespace celsiaAssetsment.Models
 
 
         [Required(ErrorMessage = "The client id is required.")]
-        public int Client_Id { get; set; }
+        public int ClientId { get; set; }
         public virtual Client? Client { get; set; }
 
         [Required(ErrorMessage = "The platform id is required.")]
-        public int Platform_Id { get; set; }
+        public int PlatformId { get; set; }
         public virtual Platform? Platform { get; set; }
 
         [Required(ErrorMessage = "Invoice id is required.")]
-        public int Invoice_Id { get; set; }
+        public int InvoiceId { get; set; }
         public virtual Invoice? Invoice { get; set; }
     }
 }

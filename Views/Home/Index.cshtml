@@ -9,7 +9,7 @@
     {
         var userName = User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault() ?? "User";
         <h1 class="display-4 py-4">Welcome @userName</h1>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="Home">Import Excel</a>
+        <a class="btn btn-primary" asp-action="Index" asp-controller="FileUpload">Import Excel</a>
         <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Create Admin</a>
     }
 </div>

@@ -1,0 +1,15 @@
+@model celsiaAssetsment.DTOs.FileUploadDTO
+
+@{
+    ViewData["Title"] = "File Upload";
+}
+
+<h2>Upload File</h2>
+
+<form asp-action="UploadFile" asp-controller="FileUpload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="File"></label>
+        <input asp-for="File" type="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
