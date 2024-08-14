@@ -1,0 +1,42 @@
+@model celsiaAssetsment.DTOs.InvoiceDTO
+
+@{
+    ViewData["Title"] = "Create Invoice";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" class="form-control" />
+            <span asp-validation-for="Number" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Period" class="control-label"></label>
+            <input asp-for="Period" class="form-control" />
+            <span asp-validation-for="Period" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Billed_Amount" class="control-label"></label>
+            <input asp-for="Billed_Amount" class="form-control" />
+            <span asp-validation-for="Billed_Amount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Paid_Amount" class="control-label"></label>
+            <input asp-for="Paid_Amount" class="form-control" />
+            <span asp-validation-for="Paid_Amount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClientId" class="control-label"></label>
+            <input asp-for="ClientId" class="form-control" />
+            <span asp-validation-for="ClientId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+}

@@ -23,7 +23,8 @@
             <img src="~/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme"
                 class="rounded-circle avatar-md">
             <div class="dropdown">
-                <a href="javascript: void(0);" class="dropdown-toggle h5 mb-1 d-block" data-bs-toggle="dropdown">Robinson Cortes</a>
+                <a href="javascript: void(0);" class="dropdown-toggle h5 mb-1 d-block"
+                    data-bs-toggle="dropdown">Robinson Cortes</a>
                 <div class="dropdown-menu user-pro-dropdown">
 
                     <!-- item-->
@@ -39,16 +40,12 @@
                     </a>
 
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="fe-lock me-1"></i>
-                        <span>Lock Screen</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="fe-log-out me-1"></i>
-                        <span>Logout</span>
-                    </a>
+                    <form asp-controller="Home" asp-action="Logout" method="post">
+                        <button type="submit" class="dropdown-item notify-item">
+                            <i class="fe-log-out"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
 
                 </div>
             </div>
@@ -58,95 +55,106 @@
         <!--- Menu -->
         <ul class="menu">
 
+
             <li class="menu-title">Navigation</li>
 
             <li class="menu-item">
+                <a asp-action="Index" asp-controller="Home" class="menu-link">
+                    <span class="menu-icon"><i data-feather="home"></i></span>
+                    <span class="menu-text"> Home </span>
+                </a>
+            </li>
+
+            <li class="menu-item">
                 <a href="#menucelsiaAssetsments" data-bs-toggle="collapse" class="menu-link">
-                    <span class="menu-icon"><i data-feather="airplay"></i></span>
-                    <span class="menu-text"> celsiaAssetsments </span>
-                    <span class="badge bg-success rounded-pill ms-auto">4</span>
+                    <span class="menu-icon"><i data-feather="grid"></i></span>
+                    <span class="menu-text"> Clients</span>
+                    <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="menucelsiaAssetsments">
                     <ul class="sub-menu">
                         <li class="menu-item">
-                            <a href="index.html" class="menu-link">
-                                <span class="menu-text">celsiaAssetsment 1</span>
+                            <a href="@Url.Action("Index", "Clients")" class="menu-link">
+                                <span class="menu-text">Client List</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="celsiaAssetsment-2.html" class="menu-link">
-                                <span class="menu-text">celsiaAssetsment 2</span>
+                            <a href="@Url.Action("Create", "Clients")" class="menu-link">
+                                <span class="menu-text">Add New Client</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="celsiaAssetsment-3.html" class="menu-link">
-                                <span class="menu-text">celsiaAssetsment 3</span>
+                            <a href="@Url.Action("Edit", "Clients", new { id = 1 })" class="menu-link">
+                                <span class="menu-text">Edit Client</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="celsiaAssetsment-4.html" class="menu-link">
-                                <span class="menu-text">celsiaAssetsment 4</span>
+                            <a href="@Url.Action("Details", "Clients", new { id = 1 })" class="menu-link">
+                                <span class="menu-text">Client Details</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-            <li class="menu-title">Apps</li>
-
             <li class="menu-item">
-                <a href="apps-calendar.html" class="menu-link">
-                    <span class="menu-icon"><i data-feather="calendar"></i></span>
-                    <span class="menu-text"> Calendar </span>
+                <a href="#menuInvoices" data-bs-toggle="collapse" class="menu-link">
+                    <span class="menu-icon"><i data-feather="file-text"></i></span>
+                    <span class="menu-text">Invoices</span>
+                    <span class="menu-arrow"></span>
                 </a>
+                <div class="collapse" id="menuInvoices">
+                    <ul class="sub-menu">
+                        <li class="menu-item">
+                            <a href="@Url.Action("Index", "Invoices")" class="menu-link">
+                                <span class="menu-text">Invoice List</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="@Url.Action("Create", "Invoices")" class="menu-link">
+                                <span class="menu-text">Add New Invoice</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="@Url.Action("Edit", "Invoices", new { id = 1 })" class="menu-link">
+                                <span class="menu-text">Edit Invoice</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="@Url.Action("Details", "Invoices", new { id = 1 })" class="menu-link">
+                                <span class="menu-text">Invoice Details</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
 
             <li class="menu-item">
-                <a href="#menuTables" data-bs-toggle="collapse" class="menu-link">
-                    <span class="menu-icon"><i data-feather="grid"></i></span>
-                    <span class="menu-text"> Tables </span>
+                <a href="#menuTransactions" data-bs-toggle="collapse" class="menu-link">
+                    <span class="menu-icon"><i data-feather="credit-card"></i></span>
+                    <span class="menu-text">Transactions</span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="menuTables">
+                <div class="collapse" id="menuTransactions">
                     <ul class="sub-menu">
                         <li class="menu-item">
-                            <a href="tables-basic.html" class="menu-link">
-                                <span class="menu-text">Basic Tables</span>
+                            <a href="@Url.Action("Index", "Transactions")" class="menu-link">
+                                <span class="menu-text">Transaction List</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="tables-datatables.html" class="menu-link">
-                                <span class="menu-text">Data Tables</span>
+                            <a href="@Url.Action("Create", "Transactions")" class="menu-link">
+                                <span class="menu-text">Add New Transaction</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="tables-editable.html" class="menu-link">
-                                <span class="menu-text">Editable Tables</span>
+                            <a href="@Url.Action("Edit", "Transactions", new { id = 1 })" class="menu-link">
+                                <span class="menu-text">Edit Transaction</span>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="tables-responsive.html" class="menu-link">
-                                <span class="menu-text">Responsive Tables</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="tables-footables.html" class="menu-link">
-                                <span class="menu-text">FooTable</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="tables-bootstrap.html" class="menu-link">
-                                <span class="menu-text">Bootstrap Tables</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="tables-tablesaw.html" class="menu-link">
-                                <span class="menu-text">Tablesaw Tables</span>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="tables-jsgrid.html" class="menu-link">
-                                <span class="menu-text">JsGrid Tables</span>
+                            <a href="@Url.Action("Details", "Transactions", new { id = 1 })" class="menu-link">
+                                <span class="menu-text">Transaction Details</span>
                             </a>
                         </li>
                     </ul>

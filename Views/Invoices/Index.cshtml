@@ -1,0 +1,44 @@
+@model IEnumerable<celsiaAssetsment.DTOs.InvoiceDTO>
+
+@{
+    ViewData["Title"] = "Invoices List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Add New Invoice</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Period</th>
+                <th>Billed Amount</th>
+                <th>Paid Amount</th>
+                <th>Client ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var invoice in Model)
+            {
+                <tr>
+                    <td>@invoice.Number</td>
+                    <td>@invoice.Period</td>
+                    <td>@invoice.Billed_Amount</td>
+                    <td>@invoice.Paid_Amount</td>
+                    <td>@invoice.ClientId</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@invoice.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@invoice.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@invoice.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

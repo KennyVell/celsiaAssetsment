@@ -4,6 +4,8 @@ namespace celsiaAssetsment.DTOs
 {
     public class TransactionDTO
     {
+        public int Id { get; set; }
+        
         [Required(ErrorMessage = "The date and time of the transaction is required.")]
         public DateTime Date_Time { get; set; }
 
@@ -17,14 +19,14 @@ namespace celsiaAssetsment.DTOs
         
 
         [Required(ErrorMessage = "The client id is required.")]
-        public int Client_Id { get; set; }
+        public int ClientId { get; set; }
 
 
         [Required(ErrorMessage = "The platform id is required.")]
-        public int Platform_Id { get; set; }
+        public int PlatformId { get; set; }
 
 
         [Required(ErrorMessage = "Invoice id is required.")]
-        public int Invoice_Id { get; set; }
+        public int InvoiceId { get; set; }
     }
 }

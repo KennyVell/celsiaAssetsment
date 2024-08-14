@@ -1,0 +1,110 @@
+@model celsiaAssetsment.Models.Client
+
+@{
+    ViewData["Title"] = "Client Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Address</dt>
+        <dd class="col-sm-10">@Model.Address</dd>
+
+        <dt class="col-sm-2">Phone</dt>
+        <dd class="col-sm-10">@Model.Phone</dd>
+
+        <dt class="col-sm-2">Identity Number</dt>
+        <dd class="col-sm-10">@Model.IdentityNumber</dd>
+    </dl>
+</div>
+
+    <h4>Invoices</h4>
+    @if (Model.Invoices != null && Model.Invoices.Any())
+    {
+        <table class="table">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Period</th>
+            <th>Billed Amount</th>
+            <th>Paid Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model.Invoices)
+                {
+                    <tr>
+                        <td>@invoice.Number</td>
+                        <td>@invoice.Period</td>
+                        <td>@invoice.Billed_Amount</td>
+                        <td>@invoice.Paid_Amount</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Invoices" asp-route-id="@invoice.Id"
+                                class="btn btn-info btn-sm">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No invoices available for this client.</p>
+    }
+
+    <h4>Transactions</h4>
+    @if (Model.Transactions != null && Model.Transactions.Any())
+    {
+        <table class="table">
+    <thead>
+        <tr>
+            <th>Date & Time</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Platform</th>
+            <th>Invoice</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model.Transactions)
+                {
+                    <tr>
+                        <td>@transaction.Date_Time</td>
+                        <td>@transaction.Amount</td>
+                        <td>@transaction.Status</td>
+                        <td>@transaction.Type</td>
+                        <td>@transaction.Platform?.Name</td>
+                        <td>@transaction.Invoice?.Number</td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Transactions" asp-route-id="@transaction.Id"
+                                class="btn btn-info btn-sm">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No transactions available for this client.</p>
+    }
+
+    <p>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>
+}
