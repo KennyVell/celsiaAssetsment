@@ -44,7 +44,7 @@ namespace celsiaAssetsment.Services
 
         public async Task<Invoice> GetById(int id)
         {
-            var invoice = await _context.Invoices.FindAsync(id);
+            var invoice = await _context.Invoices.Include(x => x.Client).FirstOrDefaultAsync(x => x.Id == id);
             if (invoice == null)
             {
                 throw new Exception("he invoice doesn't exists.");

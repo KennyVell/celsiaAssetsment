@@ -44,7 +44,9 @@ namespace celsiaAssetsment.Services
 
         public async Task<Transaction> GetById(int id)
         {
-            var transaction = await _context.Transactions.FindAsync(id);
+            var transaction = await _context.Transactions.Include(x => x.Client)
+            .Include(x => x.Platform).Include(x => x.Invoice)
+            .FirstOrDefaultAsync(x => x.Id == id);
             if (transaction == null)
             {
                 throw new Exception("he transaction doesn't exists.");
