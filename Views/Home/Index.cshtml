@@ -4,12 +4,19 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    @if (User.Identity!.IsAuthenticated)
-    {
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      @if (User.Identity!.IsAuthenticated)
+      {
         var userName = User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault() ?? "User";
-        <h1 class="display-4 py-4">Welcome @userName</h1>
-        <a class="btn btn-primary" asp-action="Index" asp-controller="FileUpload">Import Excel</a>
-        <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Create Admin</a>
-    }
+        <h1 class="display-4 py-4">Welcome, @userName</h1>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          <a class="btn btn-primary me-md-2" asp-action="Index" asp-controller="FileUpload">Import Excel</a>
+          <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Create Admin</a>
+        </div>
+      }
+    </div>
+  </div>
 </div>
