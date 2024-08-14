@@ -1,0 +1,30 @@
+@model celsiaAssetsment.DTOs.FileUploadDTO
+
+@{
+    ViewData["Title"] = "File Upload";
+}
+
+<h2>Upload Excel File</h2>
+
+<form asp-action="UploadFile" asp-controller="FileUpload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="File" class="form-label"></label>
+        <input asp-for="File" type="file" class="form-control" />
+        <span asp-validation-for="File" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["ErrorMessage"]
+    </div>
+}

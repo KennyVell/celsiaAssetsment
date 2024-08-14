@@ -1,0 +1,44 @@
+CREATE TABLE Clients (
+Id INT AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(255) NOT NULL,
+Address TEXT,
+IdentityNumber VARCHAR(20),
+Phone VARCHAR(20),
+Email VARCHAR(255)
+);
+
+CREATE TABLE Platforms (
+Id INT AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Invoices (
+Id INT AUTO_INCREMENT PRIMARY KEY,
+Number VARCHAR(50),
+Period VARCHAR(50),
+Billed_Amount FLOAT NOT NULL,
+Paid_Amount FLOAT NOT NULL,
+ClientId INT,
+FOREIGN KEY (ClientId) REFERENCES Clients(Id)
+);
+
+CREATE TABLE Transactions (
+Id INT AUTO_INCREMENT PRIMARY KEY,
+Date_Time DATETIME NOT NULL,
+Amount FLOAT NOT NULL,
+Status ENUM('Pendiente','Fallida','Completada'),
+Type ENUM('Pago de Factura') DEFAULT 'Pago de Factura',
+ClientId INT,
+PlatformId INT,
+InvoiceId INT,
+FOREIGN KEY (ClientId) REFERENCES Clients(Id),
+FOREIGN KEY (PlatformId) REFERENCES Platforms(Id),
+FOREIGN KEY (InvoiceId) REFERENCES Invoices(Id)
+);
+
+CREATE TABLE Admins (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(200) UNIQUE NOT NULL,
+    Password VARCHAR(200) NOT NULL
+);

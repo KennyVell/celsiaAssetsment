@@ -11,6 +11,8 @@ namespace celsiaAssetsment.Models
         public string? Name { get; set; }
 
         public string? Address { get; set; }
+
+        [Required(ErrorMessage = "Identification number is required.")]
         public string? IdentityNumber { get; set; }
 
         [Required(ErrorMessage = "Phone number is required.")]

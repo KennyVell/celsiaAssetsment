@@ -1,0 +1,44 @@
+@model IEnumerable<celsiaAssetsment.Models.Client>
+
+@{
+    ViewData["Title"] = "Clients List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Add New Client</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Identity Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td>@client.Name</td>
+                    <td>@client.Email</td>
+                    <td>@client.Address</td>
+                    <td>@client.Phone</td>
+                    <td>@client.IdentityNumber</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@client.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@client.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@client.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

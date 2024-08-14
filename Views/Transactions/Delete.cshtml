@@ -1,0 +1,44 @@
+@model celsiaAssetsment.DTOs.TransactionDTO
+
+@{
+    ViewData["Title"] = "Delete Transaction";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <div>
+        <h4>Are you sure you want to delete this transaction?</h4>
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">Date and Time</dt>
+                <dd class="col-sm-10">@Model.Date_Time</dd>
+                
+                <dt class="col-sm-2">Amount</dt>
+                <dd class="col-sm-10">@Model.Amount</dd>
+
+                <dt class="col-sm-2">Status</dt>
+                <dd class="col-sm-10">@Model.Status</dd>
+
+                <dt class="col-sm-2">Type</dt>
+                <dd class="col-sm-10">@Model.Type</dd>
+
+                <dt class="col-sm-2">Client ID</dt>
+                <dd class="col-sm-10">@Model.ClientId</dd>
+
+                <dt class="col-sm-2">Platform ID</dt>
+                <dd class="col-sm-10">@Model.PlatformId</dd>
+
+                <dt class="col-sm-2">Invoice ID</dt>
+                <dd class="col-sm-10">@Model.InvoiceId</dd>
+            </dl>
+        </div>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+}
